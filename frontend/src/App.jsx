@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
-import Home from "./components/pages/Home";
-import Recruit from "./components/pages/Recruit";
-import Confirm from "./components/pages/Confirm";
-import Guest from "./components/pages/Guest";
-import Details from "./components/pages/Details";
+import Home from "./pages/Home";
+import Recruit from "./pages/Recruit";
+import Confirm from "./pages/Confirm";
+import Guest from "./pages/Guest";
+import Details from "./pages/Details";
 
 import Navbar from "./components/Navbar";
 
