@@ -1,15 +1,16 @@
 import React from 'react';
 import { Button, Box, Typography, Container, Grid } from '@mui/material';
+import "./Home.css";
 
 const Home = () => {
     return (
-        <Container maxWidth="lg">
+        <Container disableGutters maxWidth="false" className='container'>
             {/* ヘッダー */}
             <Box sx={{ textAlign: 'center', mt: 5 }}>
                 <Typography variant="h3" gutterBottom>
                     スポーツイベント募集
                 </Typography>
-                <Typography variant="h6" color="textSecondary">
+                <Typography variant="h6">
                     あなたのスポーツイベントを簡単に作成し、参加者を募集しましょう！
                 </Typography>
             </Box>
