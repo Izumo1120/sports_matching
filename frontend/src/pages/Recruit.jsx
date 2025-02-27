@@ -63,6 +63,7 @@ function Recruit() {
       author: {
         username: auth.currentUser?.displayName || "匿名",
         id: auth.currentUser?.uid || "unknown",
+        photoURL: auth.currentUser?.photoURL || "",
       },
     });
   };

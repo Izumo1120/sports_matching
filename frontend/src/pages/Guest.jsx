@@ -66,7 +66,6 @@ const Guest = () => {
             <div>欲しい人数：{post.people}</div>
             <div>レベル：{post.skillLevel}</div>
             <div>性別：{post.gender}</div>
-            <div>コメント：{post.comment}</div>
 
             <div className="nameAndDeleteButton">
               <h3>{post.author.username}</h3>
@@ -84,7 +83,7 @@ const Guest = () => {
                 <button
                   className="applyButton"
                   onClick={(e) => {
-                    e.stopPropagation(); // クリックイベントのバブリングを防ぐ
+                    e.stopPropagation();
                     handleButtonClick("/apply");
                   }}
                 >
