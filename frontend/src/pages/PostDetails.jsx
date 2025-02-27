@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // useParamsをインポート
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase"; // Firebaseの設定
-//import "./PostDetail.css"; // 必要に応じてスタイルを追加
+import "./PostDetail.css";
 
 const PostDetail = () => {
   const { id } = useParams(); // URLのパラメータから投稿IDを取得
@@ -30,15 +30,62 @@ const PostDetail = () => {
 
   return (
     <div className="postDetail">
-      <h1>{post.sport} - 詳細</h1>
-      <p><strong>開催場所:</strong> {post.place}</p>
-      <p><strong>開催日:</strong> {post.date}</p>
-      <p><strong>欲しい人数:</strong> {post.people}</p>
-      <p><strong>レベル:</strong> {post.skillLevel}</p>
-      <p><strong>年齢別:</strong> {post.ageGroup}</p>
-      <p><strong>性別:</strong> {post.gender}</p>
-      <p><strong>コメント:</strong> {post.comment}</p>
-      <p><strong>投稿者:</strong> {post.author?.username}</p>
+      <div className="postCard">
+        <div className="mediaAndCent">
+          <div className="centenses">
+            <div className="contents">
+              <h1>募集概要</h1>
+              <p>
+                <strong>スポーツ種目:</strong>
+                {post.sport}
+              </p>
+              <p>
+                <strong>開催場所:</strong>
+                {post.place}
+              </p>
+              <p>
+                <strong>開催日:</strong>
+                {post.date}
+              </p>
+              <p>
+                <strong>欲しい人数:</strong>
+                {post.people}
+              </p>
+            </div>
+            <hr />
+            <div className="contents">
+              <h1>募集者詳細</h1>
+              <div className="userContainer">
+                <img
+                  className="userImg"
+                  src={post.author?.photoURL}
+                  alt="profile"
+                />
+                <div className="userInfo">
+                  <p className="userName">{post.author?.username}</p>
+                  <p className="infoRow">
+                    <span className="label">競技レベル:</span>
+                    <span className="value">{post.skillLevel}</span>
+                  </p>
+                  <p className="infoRow">
+                    <span className="label">年齢:</span>
+                    <span className="value">{post.ageGroup}</span>
+                  </p>
+                  <p className="infoRow">
+                    <span className="label">性別:</span>
+                    <span className="value">{post.gender}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div className="contents">
+              <h1>コメント</h1>
+              <p>{post.comment}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
