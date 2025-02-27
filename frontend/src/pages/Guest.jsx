@@ -31,6 +31,7 @@ const Guest = () => {
       await deleteDoc(doc(db, "events", selectedPostId));
       setPostList(postList.filter((post) => post.id !== selectedPostId));
       closeModal();
+      alert("削除しました"); //これいらんかも
     }
   };
 
