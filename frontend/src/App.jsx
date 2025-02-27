@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box } from '@mui/material';
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom"; // useLocationをインポート
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -19,20 +19,32 @@ function App() {
   return (
     <Router>
       <Box sx={{ minHeight: '100vh' }}>
-        <Navbar isAuth={isAuth} setIsAuth={setIsAuth} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-          <Route path="/recruit" element={<Recruit />} />
-          <Route path="/confirm" element={<Confirm />} />
-          <Route path="/guest" element={<Guest />} />
-          <Route path="/details" element={<Details />} />
-          <Route path="/managementevent" element={<ManagementEvent />} />
-        </Routes>
+        <AppContent isAuth={isAuth} setIsAuth={setIsAuth} />
       </Box>
-      <Footer />
     </Router>
   );
 }
+
+const AppContent = ({ isAuth, setIsAuth }) => {
+  const location = useLocation(); // 現在のURLパスを取得
+
+  return (
+    <>
+      {/* ログイン画面以外でNavbarとFooterを表示 */}
+      {location.pathname !== "/login" && <Navbar isAuth={isAuth} setIsAuth={setIsAuth} />}
+      <Routes>
+        <Route path="/" element={<Home isAuth={isAuth} />} />
+        <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+        <Route path="/recruit" element={<Recruit />} />
+        <Route path="/confirm" element={<Confirm />} />
+        <Route path="/guest" element={<Guest />} />
+        <Route path="/details" element={<Details />} />
+        <Route path="/managementevent" element={<ManagementEvent />} />
+      </Routes>
+      {/* ログイン画面以外でFooterを表示 */}
+      {location.pathname !== "/login" && <Footer />}
+    </>
+  );
+};
 
 export default App;

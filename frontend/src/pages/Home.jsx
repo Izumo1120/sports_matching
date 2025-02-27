@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // useNavigateをインポート
 import React, { useState, useEffect } from 'react';
 import { Button, Box, Container } from '@mui/material';
 import "./Home.css";
@@ -16,7 +16,8 @@ const images = [
     "/header5.jpg"
 ];
 
-const Home = () => {
+const Home = ({ isAuth }) => {
+    const navigate = useNavigate(); // useNavigateを使って遷移処理
     const [currentImage, setCurrentImage] = useState(0);
     const [prevImage, setPrevImage] = useState(null);
     const [animate, setAnimate] = useState(false);
@@ -36,6 +37,17 @@ const Home = () => {
         return () => clearInterval(interval);
     }, [currentImage]);
 
+    // ボタンがクリックされたときの処理
+    const handleButtonClick = (link) => {
+        console.log(isAuth);
+        if (isAuth) {
+            navigate(link);// isAuthがtrueの場合、指定されたリンクに遷移
+        } else {
+            navigate("/login");// isAuthがfalseの場合、ログイン画面に遷移
+
+        }
+    };
+
     return (
         <Container disableGutters maxWidth={false} className='container'>
             {/* ヘッダー */}
@@ -54,7 +66,6 @@ const Home = () => {
                     alt="スポーツイベント"
                     className="slide-image"
                 />
-
                 {/* スライドしてくる次の画像 */}
                 {prevImage !== null && (
                     <img
@@ -98,43 +109,39 @@ const Home = () => {
                 mb: 4,
             }}>
                 <Box className="button-box">
-                    <Link to="/recruit">
-                        <Button className="button"
-                            sx={{
-                                borderRadius: '8px', // 角を丸くする場合
-                                width: 150,
-                                height: 150,
-                            }}
-                        >
-                            <GroupAddIcon sx={{ fontSize: 80 }} />
-
-                            <h3>募集する</h3>
-                        </Button>
-                    </Link>
-                    <Link to="/guest">
-                        <Button className="button"
-                            sx={{
-                                borderRadius: '8px', // 角を丸くする場合
-                                width: 150,
-                                height: 150,
-                            }}
-                        >
-                            <ManageSearchIcon sx={{ fontSize: 80 }} />
-                            <h3>参加する</h3>
-                        </Button>
-                    </Link>
-                    <Link to="/managementevent">
-                        <Button className="button"
-                            sx={{
-                                borderRadius: '8px', // 角を丸くする場合
-                                width: 150,
-                                height: 150,
-                            }}
-                        >
-                            <ChecklistIcon sx={{ fontSize: 80 }} />
-                            <h3>イベント管理</h3>
-                        </Button>
-                    </Link>
+                    <Button className="button"
+                        sx={{
+                            borderRadius: '8px', // 角を丸くする場合
+                            width: 150,
+                            height: 150,
+                        }}
+                        onClick={() => handleButtonClick("/recruit")}
+                    >
+                        <GroupAddIcon sx={{ fontSize: 80 }} />
+                        <h3>募集する</h3>
+                    </Button>
+                    <Button className="button"
+                        sx={{
+                            borderRadius: '8px', // 角を丸くする場合
+                            width: 150,
+                            height: 150,
+                        }}
+                        onClick={() => handleButtonClick("/guest")}
+                    >
+                        <ManageSearchIcon sx={{ fontSize: 80 }} />
+                        <h3>参加する</h3>
+                    </Button>
+                    <Button className="button"
+                        sx={{
+                            borderRadius: '8px', // 角を丸くする場合
+                            width: 150,
+                            height: 150,
+                        }}
+                        onClick={() => handleButtonClick("/managementevent")}
+                    >
+                        <ChecklistIcon sx={{ fontSize: 80 }} />
+                        <h3>イベント管理</h3>
+                    </Button>
                 </Box>
             </Container>
         </Container>
