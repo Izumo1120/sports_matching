@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Box, Typography, Container } from '@mui/material';
+import { Button, Box, Container } from '@mui/material';
 import "./Home.css";
 
-
+//アイコン
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import ManageSearchIcon from '@mui/icons-material/ManageSearch';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 
 const images = [
     "/header1.jpg",
@@ -63,23 +66,43 @@ const Home = () => {
 
             {/* サービス紹介 */}
             <Box className="center-box">
-                <Typography variant="h4" gutterBottom>
-                    サービス紹介
-                </Typography>
-                <Typography paragraph>
-                    このサービスでは、あなたのスポーツイベントを簡単に作成し、参加者を募ることができます。イベントの日程、参加人数、スポーツの種類を選んで、参加者を集めましょう。
-                </Typography>
+                <h2>
+                    スポーツマッチングアプリ - 佐賀県で仲間を見つけよう！
+                </h2>
+                <p className="description">
+                    佐賀県でチームスポーツを楽しみたいけど、メンバーが足りない…<br />
+                    そんなときに頼れるのが「スポーツマッチングアプリ」です！<br />
+                    このアプリは、あなたのスポーツイベントに必要な人数を募るための便利なツール。<br />
+                    シンプルで使いやすいインターフェースを通じて、参加者を迅速に集めることができます。
+                </p>
             </Box>
 
-            {/* 募集ボタン・参加ボタン */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3, my: 4 }}>
-                <Button variant="contained" color="primary" size="large" href="/recruit">
-                    募集を作成
-                </Button>
-                <Button variant="outlined" color="secondary" size="large" href="/guest">
-                    参加する
-                </Button>
+            <Box className="center-box">
+                <h2>
+                    こんなときに使える！
+                </h2>
+                <p className="description">
+                    バスケットボールやサッカー、フットサルなど、チームスポーツでメンバーが足りないとき<br />
+                    急なメンバー不足でも、地域のスポーツ好きと簡単にマッチング<br />
+                    新しい仲間を作りたい、活動の幅を広げたい人にぴったり
+                </p>
             </Box>
+            <Container>
+                <Box className="button-box">
+                    <Button className="button">
+                        <GroupAddIcon sx={{ fontSize: 50 }} />
+                        <p>参加者募集</p>
+                    </Button>
+                    <Button className="button">
+                        <ManageSearchIcon sx={{ fontSize: 50 }} />
+                        <p>募集を探す</p>
+                    </Button>
+                    <Button className="button">
+                        <ChecklistIcon sx={{ fontSize: 50 }} />
+                        <p>イベント管理</p>
+                    </Button>
+                </Box>
+            </Container>
         </Container>
     );
 };
