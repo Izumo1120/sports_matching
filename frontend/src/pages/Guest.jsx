@@ -8,6 +8,8 @@ import "./Guest.css";
 
 const Guest = () => {
   const [postList, setPostList] = useState([]);
+  const navigate = useNavigate();
+
 
   const deletePost = async (id) => {
     await deleteDoc(doc(db, "events", id));
