@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { auth, provider } from "../firebase";
 import { signOut } from "firebase/auth";
-import { Button, Box, Container } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
 import "./Navbar.css"; // スタイル用のCSSファイルを作成
 
 //アイコン
@@ -12,6 +12,10 @@ import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import AddIcon from '@mui/icons-material/Add';
+import SmsIcon from '@mui/icons-material/Sms';
+import InfoIcon from '@mui/icons-material/Info';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 
 const Navbar = ({ isAuth, setIsAuth }) => {
@@ -32,45 +36,64 @@ const Navbar = ({ isAuth, setIsAuth }) => {
     }
   };
   return (
-    <div className="container">
-      <nav className="navbar">
-        <DensityMediumIcon sx={{ ml: '10%' }} />
-        <div className="navbar-brand">
-          <Link to="/" className="navbar-title">
-            SAGAスポーツマッチング
-          </Link>
-        </div>
-        <div className="navbar-auth">
-          {!isAuth ? (
-            <Link to="/login" className="nav-link">
-              <LoginIcon />
-              ログイン
+    <>
+      <nav className="navbar-m">
+        <div className="navbar-l">
+          <div className="navbar-brand">
+            <Link to="/" className="navbar-title">
+              SAGAスポーツマッチング
             </Link>
+          </div>
+        </div>
+        <div className="navbar-r">
+          {!isAuth ? (
+            <Tooltip title="ログイン">
+              <Link to="/login" className="nav-link">
+                <LoginIcon sx={{ fontSize: 40 }} />
+              </Link>
+            </Tooltip>
           ) : (
             <>
-              <button className="nav-link" onClick={() => handleButtonClick("/recruit")}>
-                <GroupAddIcon />
-                募集する
-              </button>
-              <button className="nav-link" onClick={() => handleButtonClick("/guest")}>
-                <ManageSearchIcon />
-                参加する
-              </button>
-              <button className="nav-link" onClick={() => handleButtonClick("/managementevent")}>
-                <ChecklistIcon />
-                イベント詳細
-              </button>
-              <button className="nav-link" onClick={logout}>
-                <LogoutIcon />
-                ログアウト
-              </button>
+              <Tooltip title="チャット">
+                <button className="nav-link">
+                  <SmsIcon sx={{ fontSize: 35 }} />
+                </button>
+              </Tooltip>
+              <Tooltip title="通知">
+                <button className="nav-link">
+                  <NotificationsIcon sx={{ fontSize: 35 }} />
+                </button>
+              </Tooltip>
+              <Tooltip title="ログアウト">
+                <button className="nav-link" onClick={logout}>
+                  <LogoutIcon sx={{ fontSize: 35 }} />
+                </button>
+              </Tooltip>
             </>
           )}
-
-
         </div>
       </nav>
-    </div>
+      <nav className="navbar-m2">
+        {!isAuth ? (
+          <></>
+        ) : (
+          <>
+            <button className="nav-link2" onClick={() => handleButtonClick("/recruit")}>
+              <GroupAddIcon sx={{ fontSize: 30, mr: '2%' }} />
+              <div>募集する</div>
+            </button>
+            <button className="nav-link2" onClick={() => handleButtonClick("/guest")}>
+              <ManageSearchIcon sx={{ fontSize: 30, mr: '2%' }} />
+              <div>参加する</div>
+            </button>
+            <button className="nav-link2" onClick={() => handleButtonClick("/managementevent")}>
+              <ChecklistIcon sx={{ fontSize: 30, mr: '2%' }} />
+              <div>イベント詳細</div>
+            </button>
+          </>
+        )}
+      </nav>
+    </>
   );
 };
 
