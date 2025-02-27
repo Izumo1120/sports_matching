@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { Button, Box, Container } from '@mui/material';
 import "./Home.css";
@@ -87,20 +88,53 @@ const Home = () => {
                     新しい仲間を作りたい、活動の幅を広げたい人にぴったり
                 </p>
             </Box>
-            <Container>
+
+            {/* サービス紹介 */}
+            <Box className="center-box">
+                <h2>スポーツ仲間を探してみよう！</h2>
+            </Box>
+            <Container sx={{
+                mt: 4,
+                mb: 4,
+            }}>
                 <Box className="button-box">
-                    <Button className="button">
-                        <GroupAddIcon sx={{ fontSize: 50 }} />
-                        <p>参加者募集</p>
-                    </Button>
-                    <Button className="button">
-                        <ManageSearchIcon sx={{ fontSize: 50 }} />
-                        <p>募集を探す</p>
-                    </Button>
-                    <Button className="button">
-                        <ChecklistIcon sx={{ fontSize: 50 }} />
-                        <p>イベント管理</p>
-                    </Button>
+                    <Link to="/recruit">
+                        <Button className="button"
+                            sx={{
+                                borderRadius: '8px', // 角を丸くする場合
+                                width: 150,
+                                height: 150,
+                            }}
+                        >
+                            <GroupAddIcon sx={{ fontSize: 80 }} />
+
+                            <h3>募集する</h3>
+                        </Button>
+                    </Link>
+                    <Link to="/guest">
+                        <Button className="button"
+                            sx={{
+                                borderRadius: '8px', // 角を丸くする場合
+                                width: 150,
+                                height: 150,
+                            }}
+                        >
+                            <ManageSearchIcon sx={{ fontSize: 80 }} />
+                            <h3>参加する</h3>
+                        </Button>
+                    </Link>
+                    <Link to="/managementevent">
+                        <Button className="button"
+                            sx={{
+                                borderRadius: '8px', // 角を丸くする場合
+                                width: 150,
+                                height: 150,
+                            }}
+                        >
+                            <ChecklistIcon sx={{ fontSize: 80 }} />
+                            <h3>イベント管理</h3>
+                        </Button>
+                    </Link>
                 </Box>
             </Container>
         </Container>
