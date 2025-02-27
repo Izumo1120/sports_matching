@@ -8,11 +8,13 @@
 }
 
 .navbar-brand {
+  text-align: left;
   font-size: 1.2rem;
   font-weight: bold;
 }
 
 .navbar-title {
+  text-align: left;
   text-decoration: none;
   color: white;
 }
@@ -35,6 +37,8 @@
 
 .nav-link {
   color: white;
+  border: none;
+  background-color: #1976d2;
   font-size: 0.8rem;
   font-weight: bold;
   text-decoration: none;
@@ -77,8 +81,10 @@
 
 .hamburger-container {
   display: flex;
-  flex-direction: column; /* 縦に並べる */
-  gap: 6px; /* それぞれの線の間隔を調整 */
+  flex-direction: column;
+  /* 縦に並べる */
+  gap: 6px;
+  /* それぞれの線の間隔を調整 */
   cursor: pointer;
   justify-content: center;
 }
