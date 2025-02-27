@@ -10,6 +10,7 @@ import Details from "./pages/Details";
 import ManagementEvent from "./pages/ManagementEvent";
 
 import Navbar from "./components/Navbar";
+import Footer from './components/Footer';
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -26,6 +27,7 @@ function App() {
         <Route path="/details" element={<Details />} />
         <Route path="/managementevent" element={<ManagementEvent />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
