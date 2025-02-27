@@ -49,26 +49,26 @@ function Recruit() {
     }
   }, [location.state]);
 
-  const Recruit = async () => {
-    console.log(date);
+  // Firebase にデータを追加する関数
+  const RecruitPost = async () => {
     await addDoc(collection(db, "events"), {
-      date: date,
-      sport: sport,
-      place: place,
-      people: people,
-      comment: comment,
-      ageGroup: ageGroup,
-      gender: gender,
-      skillLevel: skillLevel,
+      date,
+      sport,
+      place,
+      people,
+      comment,
+      ageGroup,
+      gender,
+      skillLevel,
       author: {
-        username: auth.currentUser.displayName,
-        id: auth.currentUser.uid,
+        username: auth.currentUser?.displayName || "匿名",
+        id: auth.currentUser?.uid || "unknown",
       },
     });
   };
 
   // 次の画面へ進む処理
-  const handleNext = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // 入力内容のバリデーション
     if (
@@ -76,7 +76,6 @@ function Recruit() {
       !sport ||
       !place ||
       !people ||
-      !comment ||
       !ageGroup ||
       !gender ||
       !skillLevel
@@ -91,6 +90,9 @@ function Recruit() {
       alert("募集人数は正しい数字を入力してください。");
       return;
     }
+
+    // Firebase にデータを追加
+    //await RecruitPost();
 
     // 確認画面へ遷移
     navigate("/confirm", {
@@ -112,7 +114,7 @@ function Recruit() {
       <Typography variant="h4" gutterBottom textAlign="center">
         募集要項入力
       </Typography>
-      <form onSubmit={handleNext}>
+      <form onSubmit={handleSubmit}>
         <TextField
           label="日程"
           type="date"
@@ -134,8 +136,6 @@ function Recruit() {
         </FormControl>
         <TextField
           label="場所"
-          multiline
-          rows={1}
           fullWidth
           value={place}
           onChange={(e) => setPlace(e.target.value)}
@@ -199,7 +199,7 @@ function Recruit() {
           margin="normal"
         />
         <Box textAlign="right" mt={3}>
-          <Button type="submit" variant="contained" onClick={Recruit}>
+          <Button type="submit" variant="contained">
             確認画面へ
           </Button>
         </Box>
