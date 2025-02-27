@@ -74,3 +74,19 @@
 .nav-button:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
+
+.hamburger-container {
+  display: flex;
+  flex-direction: column; /* 縦に並べる */
+  gap: 6px; /* それぞれの線の間隔を調整 */
+  cursor: pointer;
+  justify-content: center;
+}
+
+.hamburger {
+  background-color: #fff;
+  width: 30px;
+  height: 3px;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
