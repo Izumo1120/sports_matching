@@ -57,23 +57,29 @@ function Recruit() {
 
   // Firebase にデータを追加する関数
   const RecruitPost = async () => {
-    await addDoc(collection(db, "events"), {
-      date,
-      sport,
-      place,
-      people,
-      comment,
-      ageGroup,
-      gender,
-      skillLevel,
-      appOrRec: appOrRec || "",
-      approve: approve || "false",
-      author: {
-        username: auth.currentUser?.displayName || "匿名",
-        id: auth.currentUser?.uid || "unknown",
-        photoURL: auth.currentUser?.photoURL || "",
-      },
-    });
+    try {
+      const docRef = await addDoc(collection(db, "events"), {
+        date,
+        sport,
+        place,
+        people,
+        comment,
+        ageGroup,
+        gender,
+        skillLevel,
+        appOrRec: appOrRec || "",
+        approve: approve || "false",
+        author: {
+          username: auth.currentUser?.displayName || "匿名",
+          id: auth.currentUser?.uid || "unknown",
+          photoURL: auth.currentUser?.photoURL || "",
+        },
+        applier: {},
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   // 次の画面へ進む処理
@@ -101,7 +107,7 @@ function Recruit() {
     }
 
     // Firebase にデータを追加
-    //await RecruitPost();
+    await RecruitPost();
 
     // 確認画面へ遷移
     navigate("/confirm", {

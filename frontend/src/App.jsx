@@ -20,7 +20,6 @@ import ApplyConfirm from "./pages/ApplyConfirm";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
@@ -46,12 +45,12 @@ const AppContent = ({ isAuth, setIsAuth }) => {
         <Route path="/" element={<Home isAuth={isAuth} />} />
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
         <Route path="/recruit" element={<Recruit />} />
-        <Route path="/apply" element={<Apply />} />
+        <Route path="/post/:id/apply" element={<Apply />} />
         <Route path="/confirm" element={<Confirm />} />
         <Route path="/guest" element={<Guest />} />
         <Route path="/details" element={<Details />} />
         <Route path="/managementevent" element={<ManagementEvent />} />
-        <Route path="/applyconfirm" element={<ApplyConfirm />} />
+        <Route path="/post/:id/applyconfirm" element={<ApplyConfirm />} />
         <Route path="/post/:id" element={<PostDetails />} />{" "}
         {/* 投稿詳細ページ */}
       </Routes>

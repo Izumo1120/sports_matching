@@ -1,8 +1,5 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { addDoc, collection } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import {
   TextField,
   Select,
@@ -15,101 +12,49 @@ import {
 } from "@mui/material";
 
 function Apply() {
-  const [date, setDate] = useState("");
-  const [sport, setSport] = useState("");
-  const [place, setPlace] = useState("");
   const [people, setPeople] = useState("");
   const [comment, setComment] = useState("");
   const [ageGroup, setAgeGroup] = useState("");
   const [gender, setGender] = useState("");
   const [skillLevel, setSkillLevel] = useState("");
-  const [appOrRec, setAppOrRec] = useState("");
-  const [approve, setApprove] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const eventData = location.state || {};
+  const { id } = useParams();
 
-  // Confirm画面から戻ってきた場合にフォームの内容を更新
   useEffect(() => {
     if (location.state) {
-      const {
-        date,
-        sport,
-        place,
-        people,
-        ageGroup,
-        gender,
-        skillLevel,
-        comment,
-        appOrRec,
-        approve,
-      } = location.state;
-      setDate(date);
-      setSport(sport);
-      setPlace(place);
-      setPeople(people);
-      setAgeGroup(ageGroup);
-      setGender(gender);
-      setSkillLevel(skillLevel);
-      setComment(comment);
-      setAppOrRec(appOrRec);
-      setApprove(approve);
+      const { people, ageGroup, gender, skillLevel, comment } = location.state;
+      setPeople(people || "");
+      setAgeGroup(ageGroup || "");
+      setGender(gender || "");
+      setSkillLevel(skillLevel || "");
+      setComment(comment || "");
     }
   }, [location.state]);
 
-  // Firebase にデータを追加する関数
-  const ApplyPost = async () => {
-    await addDoc(collection(db, "events"), {
-      date: date || "", //空の状態で保存
-      sport: sport || "",
-      place: place || "",
-      people,
-      comment,
-      ageGroup,
-      gender,
-      skillLevel,
-      appOrRec: appOrRec || "",
-      approve: approve || "false",
-      author: {
-        username: auth.currentUser?.displayName || "匿名",
-        id: auth.currentUser?.uid || "unknown",
-      },
-    });
-  };
-
-  // 次の画面へ進む処理
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    // 入力内容のバリデーション
-    if (
-      !people ||
-      !ageGroup ||
-      !gender ||
-      !skillLevel
-    ) {
+
+    if (!people || !ageGroup || !gender || !skillLevel) {
       alert("すべての項目を入力してください。");
       return;
     }
 
-    // peopleが数字であることを確認
     const peopleNumber = parseInt(people, 10);
     if (isNaN(peopleNumber) || peopleNumber <= 0) {
       alert("募集人数は正しい数字を入力してください。");
       return;
     }
-  
-    // 確認画面へ遷移
-    navigate("/applyconfirm", {
+
+    navigate(`/post/${id}/applyconfirm`, {
       state: {
-        date,
-        sport,
-        place,
+        ...eventData,
         people: peopleNumber,
         comment,
         ageGroup,
         gender,
         skillLevel,
-        appOrRec,
-        approve,
       },
     });
   };
