@@ -22,6 +22,8 @@ function Recruit() {
   const [ageGroup, setAgeGroup] = useState("");
   const [gender, setGender] = useState("");
   const [skillLevel, setSkillLevel] = useState("");
+  const [appOrRec, setAppOrRec] = useState("");
+  const [approve, setApprove] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -37,6 +39,8 @@ function Recruit() {
         gender,
         skillLevel,
         comment,
+        appOrRec,
+        approve,
       } = location.state;
       setDate(date);
       setSport(sport);
@@ -46,6 +50,8 @@ function Recruit() {
       setGender(gender);
       setSkillLevel(skillLevel);
       setComment(comment);
+      setAppOrRec(appOrRec);
+      setApprove(approve);
     }
   }, [location.state]);
 
@@ -60,6 +66,8 @@ function Recruit() {
       ageGroup,
       gender,
       skillLevel,
+      appOrRec: appOrRec || "",
+      approve: approve || "false",
       author: {
         username: auth.currentUser?.displayName || "匿名",
         id: auth.currentUser?.uid || "unknown",
@@ -105,6 +113,8 @@ function Recruit() {
         ageGroup,
         gender,
         skillLevel,
+        appOrRec,
+        approve,
       },
     });
   };

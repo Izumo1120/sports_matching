@@ -16,6 +16,8 @@ function Confirm() {
         ageGroup = "未設定",
         gender = "未設定",
         skillLevel = "未設定",
+        appOrRec = "未設定",
+        approve = "未設定",
     } = location.state || {};
 
     if (!location.state) {
@@ -24,13 +26,13 @@ function Confirm() {
 
     const handleModify = () => {
         navigate("/recruit", {
-            state: { date, sport, place, people, comment, ageGroup, gender, skillLevel }
+            state: { date, sport, place, people, comment, ageGroup, gender, skillLevel, appOrRec, approve }
         });
     };
 
     const handleSubmit = async () => {
         try {
-            console.log("投稿内容:", { date, sport, place, people, comment, ageGroup, gender, skillLevel });
+            console.log("投稿内容:", { date, sport, place, people, comment, ageGroup, gender, skillLevel, appOrRec, approve });
 
             await addDoc(collection(db, "events"), {
                 date,
@@ -41,6 +43,8 @@ function Confirm() {
                 ageGroup,
                 gender,
                 skillLevel,
+                appOrRec,
+                approve,
                 author: {
                     username: auth.currentUser?.displayName || "匿名",
                     id: auth.currentUser?.uid || "unknown",
