@@ -1,3 +1,16 @@
+.deleteButton {
+  height: 50px;
+  background-color: #d25353;
+  font-size: 15px;
+  font-weight: bold;
+}
+.applyButton {
+  height: 50px;
+  background-color: #5379d2;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .homePage {
   width: 100%;
   height: calc(100vh-80px);
@@ -37,7 +50,6 @@
 
 .nameAndDeleteButton button {
   flex: 10%;
-  background-color: #515de9;
   color: white;
   border: none;
   padding: 7px 15px;
@@ -46,10 +58,14 @@
   transition: all 0.3s;
 }
 
-.nameAndDeleteButton button:hover {
-  background-color: #3741ac;
+.deleteButton:hover {
+  background-color: #9f3e3e;
+}
+
+.applyButton:hover {
+  background-color: #37508a;
 }
 
 .nameAndDeleteButton h3 {
-  flex: 90%;
+  flex: 80%;
 }
