@@ -1,13 +1,26 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { auth, provider } from "../firebase";
+import { signOut } from "firebase/auth";
 import "./Navbar.css"; // スタイル用のCSSファイルを作成
 
 //アイコン
-import LoginIcon from '@mui/icons-material/Login';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import ManageSearchIcon from '@mui/icons-material/ManageSearch';
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 
-const Navbar = () => {
+const Navbar = ({ isAuth, setIsAuth }) => {
+  const navigate = useNavigate();
+  const logout = () => {
+    //ログアウト
+    signOut(auth).then(() => {
+      localStorage.clear();
+      setIsAuth(false);
+      navigate("/");
+    });
+  };
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -29,10 +42,17 @@ const Navbar = () => {
           <PersonAddIcon />
           新規登録
         </Link>
-        <Link to="/login" className="nav-link">
-          <LoginIcon />
-          ログイン
-        </Link>
+        {!isAuth ? (
+          <Link to="/login" className="nav-link">
+            <LoginIcon />
+            ログイン
+          </Link>
+        ) : (
+          <button className="nav-button" onClick={logout}>
+            <LogoutIcon />
+            ログアウト
+          </button>
+        )}
       </div>
     </nav>
   );
