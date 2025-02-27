@@ -23,11 +23,20 @@ const Guest = () => {
     getPosts();
   }, []);
 
+  // 投稿クリック時に詳細ページへ遷移する関数
+  const handlePostClick = (id) => {
+    navigate(`/post/${id}`); // 例: 詳細ページへの遷移
+  };
+
   return (
     <div className="homePage">
       {postList.map((post) => {
         return (
-          <div className="postContents" key={post.id}>
+          <div
+          className="postContents"
+          key={post.id}
+          onClick={() => handlePostClick(post.id)} // クリック時に遷移
+          >
             <div className="postHeader">
               <h1>{post.sport}</h1>
             </div>
