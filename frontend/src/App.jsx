@@ -8,6 +8,8 @@ import Confirm from "./pages/Confirm";
 import Guest from "./pages/Guest";
 import Details from "./pages/Details";
 import ManagementEvent from "./pages/ManagementEvent";
+import ApplyDetails from "./pages/ApplyDetails";
+import RecruitDetail from "./pages/RecruitDetail";
 
 import Navbar from "./components/Navbar";
 
@@ -25,6 +27,8 @@ function App() {
         <Route path="/guest" element={<Guest />} />
         <Route path="/details" element={<Details />} />
         <Route path="/managementevent" element={<ManagementEvent />} />
+        <Route path="/recruitdetail" element={<RecruitDetail />} />
+        <Route path="/applydetails" element={<ApplyDetails />} />
       </Routes>
     </Router>
   );
