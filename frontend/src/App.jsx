@@ -21,7 +21,7 @@ function App() {
       <Box sx={{ minHeight: '100vh' }}>
         <Navbar isAuth={isAuth} setIsAuth={setIsAuth} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home isAuth={isAuth} />} />
           <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
           <Route path="/recruit" element={<Recruit />} />
           <Route path="/confirm" element={<Confirm />} />
