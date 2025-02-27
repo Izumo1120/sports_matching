@@ -7,3 +7,36 @@
 body {
   margin: 0;
 }
+
+.slide-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  position: absolute;
+  /* ← ここはそのまま */
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.slide-in {
+  transform: translateX(100%);
+  animation: slideIn 0.8s forwards ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.center-box {
+  width: 75%;
+  /* 幅を画面幅の80%に設定 */
+  margin: 0 auto;
+  /* 自動で左右のマージンを設定して中央寄せ */
+}

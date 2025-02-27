@@ -35,11 +35,23 @@
 
 .nav-link {
   color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  /* テキストのサイズを変更 */
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 5px;
   transition: all 0.3s;
+  display: flex;
+  /* フレックスボックスで配置 */
+  flex-direction: column;
+  /* アイコンとテキストを縦並びに */
+  align-items: center;
+  /* アイコンとテキストを中央揃え */
+  gap: 5px;
+  /* アイコンとテキストの間にスペースを追加 */
 }
+
 
 .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.2);

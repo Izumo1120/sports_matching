@@ -1,23 +1,69 @@
-import React from 'react';
-import { Button, Box, Typography, Container, Grid } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Button, Box, Typography, Container } from '@mui/material';
 import "./Home.css";
 
+
+
+const images = [
+    "/header1.jpg",
+    "/header2.jpg",
+    "/header3.jpg",
+    "/header4.jpg",
+    "/header5.jpg"
+];
+
 const Home = () => {
+    const [currentImage, setCurrentImage] = useState(0);
+    const [prevImage, setPrevImage] = useState(null);
+    const [animate, setAnimate] = useState(false);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPrevImage(currentImage);  // 現在の画像をprevImageに保存
+            setAnimate(true);  // アニメーション開始
+
+            setTimeout(() => {
+                setCurrentImage((prev) => (prev + 1) % images.length); // 次の画像に切り替え
+                setAnimate(false); // アニメーション終了
+                setPrevImage(null); // 古い画像を消去
+            }, 800); // アニメーション時間と同期
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [currentImage]);
+
     return (
-        <Container disableGutters maxWidth="false" className='container'>
+        <Container disableGutters maxWidth={false} className='container'>
             {/* ヘッダー */}
-            <Box sx={{ textAlign: 'center', mt: 5 }}>
-                <Typography variant="h3" gutterBottom>
-                    スポーツイベント募集
-                </Typography>
-                <Typography variant="h6">
-                    あなたのスポーツイベントを簡単に作成し、参加者を募集しましょう！
-                </Typography>
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                mb: 3,
+                position: 'relative',
+                width: '100%',
+                minHeight: '450px', // 画像エリアを確保
+                overflow: 'hidden'  // アニメーション時に画像がはみ出ないように
+            }}>
+                {/* 現在の画像 */}
+                <img
+                    src={images[currentImage]}
+                    alt="スポーツイベント"
+                    className="slide-image"
+                />
+
+                {/* スライドしてくる次の画像 */}
+                {prevImage !== null && (
+                    <img
+                        src={images[(currentImage + 1) % images.length]}
+                        alt="スポーツイベント"
+                        className={`slide-image slide-in`}
+                    />
+                )}
             </Box>
 
             {/* サービス紹介 */}
-            <Box sx={{ textAlign: 'center', my: 4 }}>
-                <Typography variant="h5" gutterBottom>
+            <Box className="center-box">
+                <Typography variant="h4" gutterBottom>
                     サービス紹介
                 </Typography>
                 <Typography paragraph>
