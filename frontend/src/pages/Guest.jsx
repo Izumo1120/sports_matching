@@ -1,12 +1,18 @@
 // Guest.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { db, auth } from "../firebase";
+
 import "./Guest.css";
 
 const Guest = () => {
   const [postList, setPostList] = useState([]);
+
+  const deletePost = async (id) => {
+    await deleteDoc(doc(db, "events", id));
+    window.location.href = "/guest";
+  };
 
   useEffect(() => {
     const getPosts = async () => {
@@ -35,8 +41,10 @@ const Guest = () => {
             <div>コメント：{post.comment}</div>
 
             <div className="nameAndDeleteButton">
-              <h3>{post.author?.username}</h3>
-              <button>削除</button>
+              <h3>{post.author.username}</h3>
+              {post.author.id === auth.currentUser?.uid && (
+                <button onClick={() => deletePost(post.id)}>削除</button>
+              )}
             </div>
           </div>
         );
