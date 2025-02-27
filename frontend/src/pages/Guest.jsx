@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import DeleteModal from "../components/DeleteModal";
-import ApplyModal from "../components/ApplyModal";
 import { useNavigate } from "react-router-dom"; // useNavigate を追加
 
 import "./Guest.css";
@@ -12,6 +11,10 @@ const Guest = () => {
   const navigate = useNavigate();
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleButtonClick = (link) => {
+    navigate(link);
+  };
 
   const openModal = (id) => {
     setSelectedPostId(id);
@@ -27,13 +30,6 @@ const Guest = () => {
     if (selectedPostId) {
       await deleteDoc(doc(db, "events", selectedPostId));
       setPostList(postList.filter((post) => post.id !== selectedPostId));
-      closeModal();
-    }
-  };
-
-  const confirmApply = async () => {
-    if (selectedPostId) {
-      alert("hello");
       closeModal();
     }
   };
@@ -87,8 +83,8 @@ const Guest = () => {
                 <button
                   className="applyButton"
                   onClick={(e) => {
-                    e.stopPropagation();
-                    openModal(post.id);
+                    e.stopPropagation(); // クリックイベントのバブリングを防ぐ
+                    handleButtonClick("/apply");
                   }}
                 >
                   応募
@@ -103,11 +99,6 @@ const Guest = () => {
         isOpen={isModalOpen}
         onClose={closeModal}
         onConfirm={confirmDelete}
-      />
-      <ApplyModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        onConfirm={confirmApply}
       />
     </>
   );
