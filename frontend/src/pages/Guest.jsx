@@ -1,9 +1,9 @@
-// Guest.jsx
 import React, { useEffect, useState } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import DeleteModal from "../components/DeleteModal";
 import ApplyModal from "../components/ApplyModal";
+import { useNavigate } from "react-router-dom"; // useNavigate を追加
 
 import "./Guest.css";
 
@@ -52,44 +52,53 @@ const Guest = () => {
   };
 
   return (
-    <div className="homePage">
-      {postList.map((post) => (
-        <div
-        className="postContents"
-        key={post.id}
-        onClick={() => handlePostClick(post.id)
-        >
-          <div className="postHeader">
-            <h1>{post.sport}</h1>
-          </div>
-          <div className="postTextContainer">{post.postText}</div>
-          <div>開催場所：{post.place}</div>
-          <div>開催日：{post.date}</div>
-          <div>欲しい人数：{post.people}</div>
-          <div>レベル：{post.skillLevel}</div>
-          <div>性別：{post.gender}</div>
-          <div>コメント：{post.comment}</div>
+    <>
+      <div className="homePage">
+        {postList.map((post) => (
+          <div
+            className="postContents"
+            key={post.id}
+            onClick={() => handlePostClick(post.id)}
+          >
+            <div className="postHeader">
+              <h1>{post.sport}</h1>
+            </div>
+            <div className="postTextContainer">{post.postText}</div>
+            <div>開催場所：{post.place}</div>
+            <div>開催日：{post.date}</div>
+            <div>欲しい人数：{post.people}</div>
+            <div>レベル：{post.skillLevel}</div>
+            <div>性別：{post.gender}</div>
+            <div>コメント：{post.comment}</div>
 
-          <div className="nameAndDeleteButton">
-            <h3>{post.author.username}</h3>
-            {post.author.id === auth.currentUser?.uid ? (
-              <button
-                className="deleteButton"
-                onClick={() => openModal(post.id)}
-              >
-                削除
-              </button>
-            ) : (
-              <button
-                className="applyButton"
-                onClick={() => openModal(post.id)}
-              >
-                応募
-              </button>
-            )}
+            <div className="nameAndDeleteButton">
+              <h3>{post.author.username}</h3>
+              {post.author.id === auth.currentUser?.uid ? (
+                <button
+                  className="deleteButton"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openModal(post.id);
+                  }}
+                >
+                  削除
+                </button>
+              ) : (
+                <button
+                  className="applyButton"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openModal(post.id);
+                  }}
+                >
+                  応募
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
       <DeleteModal
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -100,7 +109,7 @@ const Guest = () => {
         onClose={closeModal}
         onConfirm={confirmApply}
       />
-    </div>
+    </>
   );
 };
 
