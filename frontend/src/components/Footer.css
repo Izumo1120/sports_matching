@@ -1,0 +1,24 @@
+/* Footer.css */
+.footer {
+    background-color: #1976d2;
+    /* 背景色 */
+    color: white;
+    /* 文字色 */
+    text-align: center;
+    /* 中央揃え */
+    padding: 20px;
+    /* パディング */
+    position: relative;
+    /* 相対位置 */
+    bottom: 0;
+    width: 100%;
+    /* 横幅100% */
+    box-sizing: border-box;
+    /* パディングを含むボックスサイズ */
+    font-size: 14px;
+    /* フォントサイズ */
+}
+
+.footer p {
+    margin: 0;
+}
