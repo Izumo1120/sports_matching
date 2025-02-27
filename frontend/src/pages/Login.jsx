@@ -33,7 +33,7 @@ const Login = ({ setIsAuth }) => {
           backgroundColor: "#f4f6f8", // 背景色
         }}
       >
-        <nav className="navbar">
+        <nav className="navbar-m">
           <div className="navbar-brand">
             SAGAスポーツマッチング
           </div>

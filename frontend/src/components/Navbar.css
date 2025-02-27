@@ -1,15 +1,49 @@
-.navbar {
+.navbar-m {
   display: flex;
+  width: 100%;
   justify-content: space-between;
+  align-items: center;
+  background-color: #1976d2;
+  padding: 10px 20px;
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.navbar-m2 {
+  width: 100%;
+  padding: auto;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1976d2;
+  color: white;
+  display: flex;
+  gap: 2%;
+}
+
+.navbar-l {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
   align-items: center;
   background-color: #1976d2;
   padding: 10px 20px;
   color: white;
 }
 
+.navbar-r {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+  align-items: center;
+  background-color: #1976d2;
+  padding: 10px 20px;
+  color: white;
+  gap: 2%;
+}
+
 .navbar-brand {
   text-align: left;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
@@ -54,7 +88,29 @@
   /* アイコンとテキストの間にスペースを追加 */
 }
 
+.nav-link2 {
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  /* 水平方向の中央揃え */
+  color: white;
+  border: none;
+  background-color: #1976d2;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s;
+  align-items: center;
+  /* アイコンとテキストを中央揃え */
+}
+
 .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link2:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 

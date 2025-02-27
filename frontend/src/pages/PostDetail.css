@@ -1,0 +1,64 @@
+.postDetail {
+  display: flex;
+  justify-content: center;
+}
+
+.postCard {
+  box-shadow: 0px 0px 15px -5px #777777;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px 80px 50px 80px;
+  width: 50%;
+}
+
+.mediaAndCent {
+  display: flex;
+}
+
+.centenses {
+  flex: 70%;
+}
+
+.sportsImg {
+  display: flex;
+  flex: 30%;
+  width: 400px;
+  height: 400px;
+  justify-content: center;
+}
+
+.userContainer {
+  display: flex;
+  gap: 30px;
+}
+
+.userImg {
+  width: 170px;
+  height: 170px;
+  justify-content: center;
+}
+
+.userName {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.infoRow {
+  display: flex;
+  gap: 10px; /* ラベルと値の間隔を調整 */
+}
+
+.label {
+  width: 100px; /* ラベルの幅を固定 */
+  font-weight: bold;
+  text-align: right; /* 右揃えで揃える */
+}
+
+.value {
+  flex: 1; /* 値部分を可変にする */
+}
+
+.centenses p {
+  word-break: break-all;
+}
