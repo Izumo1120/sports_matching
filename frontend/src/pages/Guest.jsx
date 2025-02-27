@@ -9,6 +9,7 @@ import "./Guest.css";
 
 const Guest = () => {
   const [postList, setPostList] = useState([]);
+  const navigate = useNavigate();
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -45,10 +46,19 @@ const Guest = () => {
     getPosts();
   }, []);
 
+  // 投稿クリック時に詳細ページへ遷移する関数
+  const handlePostClick = (id) => {
+    navigate(`/post/${id}`); // 例: 詳細ページへの遷移
+  };
+
   return (
     <div className="homePage">
       {postList.map((post) => (
-        <div className="postContents" key={post.id}>
+        <div
+        className="postContents"
+        key={post.id}
+        onClick={() => handlePostClick(post.id)
+        >
           <div className="postHeader">
             <h1>{post.sport}</h1>
           </div>
