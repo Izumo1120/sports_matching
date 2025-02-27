@@ -1,35 +1,48 @@
 // Guest.jsx
-import React, { useState } from "react";
-import { Button, Box, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+import "./Guest.css";
 
 const Guest = () => {
-    const navigate = useNavigate();
+  const [postList, setPostList] = useState([]);
 
-    // 仮の募集データ
-    const [recruitList, setRecruitList] = useState([
-        { id: 1, sport: "サッカー", people: 5, date: "2025-03-01", ageGroup: "大学生", gender: "男性", skillLevel: "初心者", comment: "楽しくプレイしましょう！" },
-        { id: 2, sport: "バスケ", people: 3, date: "2025-03-05", ageGroup: "中学生", gender: "女性", skillLevel: "中級者", comment: "チームワークを大切にします。" }
-    ]);
+  useEffect(() => {
+    const getPosts = async () => {
+      const data = await getDocs(collection(db, "events"));
+      console.log(data);
+      setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getPosts();
+  }, []);
 
-    return (
-        <div>
-            {recruitList.map((recruit, index) => (
-                <Box key={index} p={2} boxShadow={2} borderRadius={2} mb={2}>
-                    <Typography><strong>スポーツ:</strong> {recruit.sport}</Typography>
-                    <Typography><strong>募集人数:</strong> {recruit.people} 人</Typography>
-                    <Typography><strong>日程:</strong> {recruit.date}</Typography>
+  return (
+    <div className="homePage">
+      {postList.map((post) => {
+        return (
+          <div className="postContents" key={post.id}>
+            <div className="postHeader">
+              <h1>{post.sport}</h1>
+            </div>
 
-                    <Button
-                        variant="outlined"
-                        onClick={() => navigate("/detail", { state: recruit })} // 詳細ページに遷移
-                    >
-                        詳細を見る
-                    </Button>
-                </Box>
-            ))}
-        </div>
-    );
+            <div className="postTextContainer">{post.postText}</div>
+            <div>開催場所：{post.place}</div>
+            <div>開催日：{post.date}</div>
+            <div>欲しい人数：{post.people}</div>
+            <div>レベル：{post.skillLevel}</div>
+            <div>性別：{post.gender}</div>
+            <div>コメント：{post.comment}</div>
+
+            <div className="nameAndDeleteButton">
+              <h3>{post.author?.username}</h3>
+              <button>削除</button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default Guest;
