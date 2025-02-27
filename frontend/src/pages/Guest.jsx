@@ -48,6 +48,10 @@ const Guest = () => {
     navigate(`/post/${id}`); // 例: 詳細ページへの遷移
   };
 
+  const handleApplyClick = (id) => {
+    navigate(`/post/${id}/apply`); // 例: 詳細ページへの遷移
+  };
+
   return (
     <>
       <div className="homePage">
@@ -84,7 +88,7 @@ const Guest = () => {
                   className="applyButton"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleButtonClick("/apply");
+                    handleApplyClick(post.id);
                   }}
                 >
                   応募
