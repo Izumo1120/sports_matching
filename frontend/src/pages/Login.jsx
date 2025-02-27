@@ -49,7 +49,7 @@ const Login = ({ setIsAuth }) => {
               textAlign: "center",
             }}
           >
-            <Typography variant="h5" color="primary" gutterBottom={true} sx={{ fontWeight: 'bold' }}>
+            <Typography variant="h5" color="black" gutterBottom={true} sx={{ fontWeight: 'bold' }}>
               外部サービスでログイン
             </Typography>
             <Button
@@ -58,12 +58,10 @@ const Login = ({ setIsAuth }) => {
               startIcon={loading ? <CircularProgress size={24} /> : <GoogleIcon />}
               onClick={loginInWithGoogle}
               sx={{
-                color: "black",
                 textTransform: 'none',
                 mt: 4,
                 padding: "10px",
                 width: '65%',
-                borderColor: "gray",
                 "&:hover": {
                   backgroundColor: "#f8f8ff",
                 },
