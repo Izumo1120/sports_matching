@@ -6,6 +6,8 @@ import Recruit from "./pages/Recruit";
 import Confirm from "./pages/Confirm";
 import Guest from "./pages/Guest";
 import Details from "./pages/Details";
+import ManagementEvent from "./pages/ManagementEvent";
+
 
 import Navbar from "./components/Navbar";
 
@@ -19,6 +21,7 @@ function App() {
         <Route path="/confirm" element={<Confirm />} />
         <Route path="/guest" element={<Guest />} />
         <Route path="/details" element={<Details />} />
+        <Route path="/managementevent" element={<ManagementEvent />} />
       </Routes>
     </Router>
   );
