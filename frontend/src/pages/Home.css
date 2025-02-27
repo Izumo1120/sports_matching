@@ -34,6 +34,21 @@ body {
   }
 }
 
+.slide-out {
+  transform: translateX(0);
+  animation: slideOut 0.8s forwards ease-in-out;
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
 .center-box {
   width: 50%;
   margin: auto;
