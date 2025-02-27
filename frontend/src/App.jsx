@@ -16,8 +16,10 @@ import Guest from "./pages/Guest";
 import Details from "./pages/Details";
 import ManagementEvent from "./pages/ManagementEvent";
 import PostDetails from "./pages/PostDetails";
+import ApplyConfirm from "./pages/ApplyConfirm";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -49,6 +51,7 @@ const AppContent = ({ isAuth, setIsAuth }) => {
         <Route path="/guest" element={<Guest />} />
         <Route path="/details" element={<Details />} />
         <Route path="/managementevent" element={<ManagementEvent />} />
+        <Route path="/applyconfirm" element={<ApplyConfirm />} />
         <Route path="/post/:id" element={<PostDetails />} />{" "}
         {/* 投稿詳細ページ */}
       </Routes>

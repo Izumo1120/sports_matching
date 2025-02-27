@@ -5,67 +5,54 @@ import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
 function Confirm() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const {
-    date = "未設定",
-    sport = "未設定",
-    place = "未設定",
-    people = "未設定",
-    comment = "未設定",
-    ageGroup = "未設定",
-    gender = "未設定",
-    skillLevel = "未設定",
-  } = location.state || {};
+    const location = useLocation();
+    const navigate = useNavigate();
+    const {
+        date = "未設定",
+        sport = "未設定",
+        place = "未設定",
+        people = "未設定",
+        comment = "未設定",
+        ageGroup = "未設定",
+        gender = "未設定",
+        skillLevel = "未設定",
+        appOrRec = "未設定",
+        approve = "未設定",
+    } = location.state || {};
 
   if (!location.state) {
     return <Typography textAlign="center">データがありません</Typography>;
   }
 
-  const handleModify = () => {
-    navigate("/recruit", {
-      state: {
-        date,
-        sport,
-        place,
-        people,
-        comment,
-        ageGroup,
-        gender,
-        skillLevel,
-      },
-    });
-  };
+    const handleModify = () => {
+        navigate("/recruit", {
+            state: { date, sport, place, people, comment, ageGroup, gender, skillLevel, appOrRec, approve }
+        });
+    };
 
-  const handleSubmit = async () => {
-    try {
-      console.log("投稿内容:", {
-        date,
-        sport,
-        place,
-        people,
-        comment,
-        ageGroup,
-        gender,
-        skillLevel,
-      });
+    const handleSubmit = async () => {
+        try {
+            console.log("投稿内容:", { date, sport, place, people, comment, ageGroup, gender, skillLevel, appOrRec, approve });
 
-      await addDoc(collection(db, "events"), {
-        date,
-        sport,
-        place,
-        people,
-        comment,
-        ageGroup,
-        gender,
-        skillLevel,
-        author: {
-          username: auth.currentUser?.displayName || "匿名",
-          id: auth.currentUser?.uid || "unknown",
-          photoURL: auth.currentUser?.photoURL || "",
-        },
-        createdAt: new Date(),
-      });
+            await addDoc(collection(db, "events"), {
+                date,
+                sport,
+                place,
+                people,
+                comment,
+                ageGroup,
+                gender,
+                skillLevel,
+                appOrRec,
+                approve,
+                author: {
+                    username: auth.currentUser?.displayName || "匿名",
+                    id: auth.currentUser?.uid || "unknown",
+                    photoURL: auth.currentUser?.photoURL || "",
+                },
+                createdAt: new Date(),
+            });
+
 
       alert("募集が投稿されました!");
       navigate("/");
