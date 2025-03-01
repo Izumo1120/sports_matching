@@ -12,23 +12,27 @@
 }
 
 .homePage {
-  width: 100%;
+  /* width: 100%; */
   height: calc(100vh-80px);
   height: auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   padding: 20px;
+  margin-top: 20px;
+  gap: 10px;
 }
 .homePage .postContents {
-  width: 600px;
+  width: 65%;
   height: auto;
   max-height: 600px;
   background-color: #fff;
-  box-shadow: 5px 9px 16px 5px #777777;
+  box-shadow: 3px 3px 15px 1px #777777;
   margin: 20px;
-  padding: 20px;
+  padding: 25px 30px 10px 30px;
   border-radius: 10px;
+  cursor: pointer;
+  justify-self: center;
 }
 
 .postHeader h1 {
@@ -68,4 +72,45 @@
 
 .nameAndDeleteButton h3 {
   flex: 80%;
+}
+
+.userImg2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.postContent {
+  padding: 10px 50px;
+}
+
+.moji {
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.date {
+  color: rgb(99, 99, 99);
+  padding: 0 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 15px;
+}
+
+.sport {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
