@@ -1,6 +1,6 @@
 // PostDetail.jsx
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // useParamsをインポート
+import { useParams, useNavigate } from "react-router-dom"; // useParamsをインポート
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase"; // Firebaseの設定
 import "./PostDetail.css";
@@ -8,6 +8,9 @@ import "./PostDetail.css";
 const PostDetail = () => {
   const { id } = useParams(); // URLのパラメータから投稿IDを取得
   const [post, setPost] = useState(null);
+  const [selectedPostId, setSelectedPostId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPostDetail = async () => {
@@ -23,6 +26,29 @@ const PostDetail = () => {
 
     getPostDetail();
   }, [id]); // idが変更されたときに再度実行されるようにする
+
+  const handleApplyClick = (id) => {
+    navigate(`/post/${id}/apply`);
+  };
+
+  const openModal = (id) => {
+    setSelectedPostId(id);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPostId(null);
+  };
+
+  const confirmDelete = async () => {
+    if (selectedPostId) {
+      await deleteDoc(doc(db, "events", selectedPostId));
+      setPostList(postList.filter((post) => post.id !== selectedPostId));
+      closeModal();
+      alert("削除しました"); //これいらんかも
+    }
+  };
 
   if (!post) {
     return <div>Loading...</div>; // 投稿情報がまだ取得されていない場合
@@ -54,6 +80,11 @@ const PostDetail = () => {
             </div>
             <hr />
             <div className="contents">
+              <h1>コメント</h1>
+              <p>{post.comment}</p>
+            </div>
+            <hr />
+            <div className="contents">
               <h1>募集者詳細</h1>
               <div className="userContainer">
                 <img
@@ -62,7 +93,7 @@ const PostDetail = () => {
                   alt="profile"
                 />
                 <div className="userInfo">
-                  <p className="userName">{post.author?.username}</p>
+                  <p className="userName">@{post.author?.username}</p>
                   <p className="infoRow">
                     <span className="label">競技レベル:</span>
                     <span className="value">{post.skillLevel}</span>
@@ -78,13 +109,17 @@ const PostDetail = () => {
                 </div>
               </div>
             </div>
-            <hr />
-            <div className="contents">
-              <h1>コメント</h1>
-              <p>{post.comment}</p>
-            </div>
           </div>
         </div>
+        <button
+          className="applyButton"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleApplyClick();
+          }}
+        >
+          申し込む
+        </button>
       </div>
     </div>
   );
