@@ -135,6 +135,7 @@ function Recruit() {
       boxShadow={3}
       borderRadius={2}
       mb={4}
+      bgcolor="white"
     >
       <Typography variant="h4" gutterBottom textAlign="center">
         募集要項入力
