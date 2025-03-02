@@ -154,6 +154,8 @@
 }
 .mainName {
   font-size: 30px;
+  display: flex;
+  align-items: center;
 }
 .subName {
   font-size: 20px;
