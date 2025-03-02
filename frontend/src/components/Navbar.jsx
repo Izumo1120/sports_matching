@@ -11,12 +11,11 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import ChecklistIcon from "@mui/icons-material/Checklist";
-import DensityMediumIcon from '@mui/icons-material/DensityMedium';
-import AddIcon from '@mui/icons-material/Add';
-import SmsIcon from '@mui/icons-material/Sms';
-import InfoIcon from '@mui/icons-material/Info';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-
+import DensityMediumIcon from "@mui/icons-material/DensityMedium";
+import AddIcon from "@mui/icons-material/Add";
+import SmsIcon from "@mui/icons-material/Sms";
+import InfoIcon from "@mui/icons-material/Info";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 const Navbar = ({ isAuth, setIsAuth }) => {
   const navigate = useNavigate();
@@ -39,11 +38,10 @@ const Navbar = ({ isAuth, setIsAuth }) => {
     <>
       <nav className="navbar-m">
         <div className="navbar-l">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-title">
-              SAGAスポーツマッチング
-            </Link>
-          </div>
+          <Link to="/" className="navbar-title">
+            <span className="mainName">スポマッチ</span>
+            <span className="subName">-SPORTS MATCHING-</span>
+          </Link>
         </div>
         <div className="navbar-r">
           {!isAuth ? (
@@ -78,16 +76,25 @@ const Navbar = ({ isAuth, setIsAuth }) => {
           <></>
         ) : (
           <>
-            <button className="nav-link2" onClick={() => handleButtonClick("/recruit")}>
-              <GroupAddIcon sx={{ fontSize: 30, mr: '2%' }} />
+            <button
+              className="nav-link2"
+              onClick={() => handleButtonClick("/recruit")}
+            >
+              <GroupAddIcon sx={{ fontSize: 30, mr: "2%" }} />
               <div>募集する</div>
             </button>
-            <button className="nav-link2" onClick={() => handleButtonClick("/guest")}>
-              <ManageSearchIcon sx={{ fontSize: 30, mr: '2%' }} />
+            <button
+              className="nav-link2"
+              onClick={() => handleButtonClick("/guest")}
+            >
+              <ManageSearchIcon sx={{ fontSize: 30, mr: "2%" }} />
               <div>参加する</div>
             </button>
-            <button className="nav-link2" onClick={() => handleButtonClick("/managementevent")}>
-              <ChecklistIcon sx={{ fontSize: 30, mr: '2%' }} />
+            <button
+              className="nav-link2"
+              onClick={() => handleButtonClick("/managementevent")}
+            >
+              <ChecklistIcon sx={{ fontSize: 30, mr: "2%" }} />
               <div>イベント詳細</div>
             </button>
           </>
