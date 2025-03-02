@@ -1,0 +1,25 @@
+.manageContainer {
+  display: flex;
+}
+
+.manageBox {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.statusBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.watchIcon {
+  color: #1976d2;
+}
+
+.status {
+  font-size: 13px;
+  color: #1976d2;
+}
