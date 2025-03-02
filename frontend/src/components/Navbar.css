@@ -41,16 +41,14 @@
   gap: 2%;
 }
 
-.navbar-brand {
-  text-align: left;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
 .navbar-title {
   text-align: left;
   text-decoration: none;
   color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .navbar-brand:hover {
@@ -153,4 +151,12 @@
   height: 3px;
   display: block;
   transition: all 0.3s ease-in-out;
+}
+.mainName {
+  font-size: 30px;
+}
+.subName {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
 }
