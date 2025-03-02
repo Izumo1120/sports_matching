@@ -55,6 +55,7 @@ function ApplyConfirm() {
       maxWidth={500}
       mx="auto"
       mt={5}
+      mb={5}
       p={3}
       boxShadow={3}
       borderRadius={2}

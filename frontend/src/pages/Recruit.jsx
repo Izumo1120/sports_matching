@@ -127,7 +127,16 @@ function Recruit() {
   };
 
   return (
-    <Box maxWidth={500} mx="auto" mt={5} p={3} boxShadow={3} borderRadius={2}>
+    <Box
+      maxWidth={500}
+      mx="auto"
+      mt={5}
+      p={3}
+      boxShadow={3}
+      borderRadius={2}
+      mb={4}
+      bgcolor="white"
+    >
       <Typography variant="h4" gutterBottom textAlign="center">
         募集要項入力
       </Typography>

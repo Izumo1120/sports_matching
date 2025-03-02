@@ -60,7 +60,16 @@ function Apply() {
   };
 
   return (
-    <Box maxWidth={500} mx="auto" mt={5} p={3} boxShadow={3} borderRadius={2}>
+    <Box
+      maxWidth={500}
+      mx="auto"
+      mt={5}
+      mb={5}
+      p={3}
+      boxShadow={3}
+      borderRadius={2}
+      bgcolor="white"
+    >
       <Typography variant="h4" gutterBottom textAlign="center">
         応募フォーム
       </Typography>
